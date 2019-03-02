@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "nodemon": "nodemon server.js"
   },
   "author": "Yunier Alvarez",
   "license": "MIT",
