@@ -6,11 +6,10 @@ const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 
-
 const app = express();
 
 // body parse middleware
-app.use(bodyParsere.urlencoded({extended: false}));
+app.use(bodyParsere.urlencoded({ extended: false }));
 app.use(bodyParsere.json());
 
 // db config
