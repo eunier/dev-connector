@@ -1,8 +1,9 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
-const User = mongoose.model('users');
+const User = mongoose.model('user');
 const keys = require('../config/keys');
+const log = require('../icon-log/icon-log')
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -20,7 +21,7 @@ module.exports = passport => {
 
           return done(null, null);
         })
-        .catch(err => console.log(err));
+        .catch(err => log.error(err));
     })
   );
 };

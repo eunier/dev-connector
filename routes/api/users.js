@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
+const log = require('../../icon-log/icon-log');
 
 // load input validation
 const validateRegisterInput = require('../../validation/register');
@@ -16,12 +17,16 @@ const User = require('../../models/User');
 // @route   GET /api/users/test
 // @desc    Test users route
 // @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'users works' }));
+router.get('/test', (req, res) => {
+  log.info('GET /api/users/test');
+  res.json({ msg: 'users works' });
+});
 
-// @route   GET /api/users/register
+// @route   POST /api/users/register
 // @desc    Register user
 // @access  Public
 router.post('/register', (req, res) => {
+  log.info('POST /api/users/register');
   const { errors, isValid } = validateRegisterInput(req.body);
 
   // check validation
@@ -54,7 +59,7 @@ router.post('/register', (req, res) => {
           newUser
             .save()
             .then(user => res.json(user))
-            .catch(err => console.log(err));
+            .catch(err => log.error(err));
         });
       });
     }
@@ -65,6 +70,7 @@ router.post('/register', (req, res) => {
 // @desc    Login User / Returning JWT token
 // @access  Public
 router.post('/login', (req, res) => {
+  log.info('GET /api/users/login');
   const { errors, isValid } = validateLoginInput(req.body);
 
   // check validation
@@ -120,6 +126,7 @@ router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
+    log.info('GET /api/users/current');
     res.json({
       id: req.user.id,
       name: req.user.name,

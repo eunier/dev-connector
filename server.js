@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParsere = require('body-parser');
 const passport = require('passport');
+const log = require('./icon-log/icon-log');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -19,8 +20,8 @@ const db = require('./config/keys').mongoURI;
 // connect to mongodb
 mongoose
   .connect(db)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  .then(() => log.success('MongoDB Connected'))
+  .catch(err => log.error(err));
 
 // passport middleware
 app.use(passport.initialize());
@@ -35,4 +36,4 @@ app.use('/api/posts', posts);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => log.success(`Server running on port ${port}`));
