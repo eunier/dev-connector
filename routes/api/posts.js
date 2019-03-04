@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const log = require('../../icon-log/icon-log');
 
-// post model
+// models
 const Post = require('../../models/Post');
+const Profile = require('../../models/Profile');
 
 // validation
 const validatePostInput = require('../../validation/post');
