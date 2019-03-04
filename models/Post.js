@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// create Schema
+// Create Schema
 const PostSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -53,4 +53,4 @@ const PostSchema = new Schema({
   }
 });
 
-module.exports.Post = mongoose.model('post', PostSchema);
+module.exports = Post = mongoose.model('post', PostSchema);
