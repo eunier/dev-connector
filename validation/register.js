@@ -26,11 +26,11 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = 'Passowrd field is required';
+    errors.password = 'Password field is required';
   }
 
   if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = 'Passowrd must be al least 6 characters';
+    errors.password = 'Password must be al least 6 characters';
   }
 
   if (Validator.isEmpty(data.password2)) {
@@ -38,7 +38,7 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = 'Passowrd must match';
+    errors.password2 = 'Password must match';
   }
 
   return {
