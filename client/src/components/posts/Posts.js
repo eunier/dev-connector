@@ -7,9 +7,14 @@ import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
 
 class Posts extends Component {
+  onDeleteClick(id) {
+    console.log(id);
+  }
+
   componentDidMount() {
     this.props.getPosts();
   }
+
   render() {
     const { posts, loading } = this.props.post;
     let postContent;
@@ -35,7 +40,7 @@ class Posts extends Component {
   }
 }
 
-Posts.protoTypes = {
+Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
