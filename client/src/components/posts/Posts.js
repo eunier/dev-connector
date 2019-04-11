@@ -7,10 +7,6 @@ import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
 
 class Posts extends Component {
-  onDeleteClick(id) {
-    console.log(id);
-  }
-
   componentDidMount() {
     this.props.getPosts();
   }
