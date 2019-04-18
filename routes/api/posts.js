@@ -87,7 +87,7 @@ router.delete(
           if (post.user.toString() !== req.user.id) {
             return res
               .status(401)
-              .json({ otauthorized: 'User not authorized' });
+              .json({ notauthorized: 'User not authorized' });
           }
 
           // delete
@@ -218,7 +218,7 @@ router.delete(
   (req, res) => {
     log.info('DELETE api/posts/comment/:id/:comment_id');
 
-    Post.findById(req.params.id)
+    Post.findOne({ _id: req.params.id })
       .then(post => {
         // check to see if comment exists
         if (
@@ -229,6 +229,8 @@ router.delete(
           return res
             .status(404)
             .json({ commentnotexists: 'Comment does not exist' });
+        } else {
+          console.log('fail');
         }
 
         // get remove index
@@ -241,7 +243,9 @@ router.delete(
 
         post.save().then(post => res.json(post));
       })
-      .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+      .catch(err =>
+        res.status(404).json({ postnotfound: `No post found ${req.params.id}` })
+      );
   }
 );
 
