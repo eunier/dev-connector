@@ -218,8 +218,9 @@ router.delete(
   (req, res) => {
     log.info('DELETE api/posts/comment/:id/:comment_id');
 
-    Post.findOne({ _id: req.params.id })
+    Post.findById(req.params.id)
       .then(post => {
+        
         // check to see if comment exists
         if (
           post.comments.filter(
@@ -229,8 +230,6 @@ router.delete(
           return res
             .status(404)
             .json({ commentnotexists: 'Comment does not exist' });
-        } else {
-          console.log('fail');
         }
 
         // get remove index
@@ -239,7 +238,7 @@ router.delete(
           .indexOf(req.params.comment_id);
 
         // splice comment out of array
-        post.comment.splice(removeIndex, 1);
+        post.comments.splice(removeIndex, 1);
 
         post.save().then(post => res.json(post));
       })
