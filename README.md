@@ -1,3 +1,3 @@
 # dev-connector
 Social network for developers
-App deployed [here](https://fathomless-taiga-68796.herokuapp.com/).
+App deployed <a href="https://fathomless-taiga-68796.herokuapp.com/" target="_blank">example</a>.
