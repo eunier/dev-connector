@@ -33,21 +33,21 @@ app.use(passport.initialize());
 // // passport config
 require('./config/passport')(passport);
 
-// // routes
-// app.use('/api/users', users);
-// app.use('/api/profile', profile);
-// app.use('/api/posts', posts);
+// routes
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
-// // server static assets if in production
-// if (process.env.NODE_ENV === 'production') {
-//   // set static folder
-//   app.use(express.static('client/build'));
+// server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // set static folder
+  app.use(express.static('client/build'));
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// }
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
-// const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
-// app.listen(port, () => log.success(`Server running on port ${port}`));
+app.listen(port, () => log.success(`Server running on port ${port}`));
