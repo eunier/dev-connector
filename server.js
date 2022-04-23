@@ -4,6 +4,9 @@ const bodyParsere = require('body-parser');
 const passport = require('passport');
 const log = require('./icon-log/icon-log');
 const path = require('path');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
